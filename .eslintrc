@@ -1,0 +1,28 @@
+{
+    "env": {
+        "browser": true,
+        "node": false,
+        "commonjs": true,
+        "es6": true,
+        "jest": true
+    },
+    "root": true,
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "quotes": 0,
+        "indent": [0,"tab"],
+        "func-call-spacing": 0,
+        "arrow-body-style": [2, "as-needed"],
+        "require-jsdoc": 0,
+        "space-before-blocks": 0,
+        "max-len": [1,150],
+        "space-before-function-paren": ["warn", {
+            "anonymous": "never",
+            "named": "never",
+            "asyncArrow": "ignore"
+        }],
+        "no-undef": "warn"
+    }
+}

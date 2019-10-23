@@ -1,0 +1,55 @@
+{
+  "name": "@bornfight/flipswitch",
+  "version": "1.0.0",
+  "author": "Bornfight",
+  "description": "flipswitch.js - pure javascript solution for clipping elements inside DOM",
+  "main": "dist/flipswitch.js",
+  "license": "MIT",
+  "keywords": [
+    "clip",
+    "clip element",
+    "flipswitch",
+    "es6"
+  ],
+  "bugs": {
+    "url": "https://github.com/blabla/issues",
+    "email": "frontend@bornfigth.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bornfight/flipswitch.git"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=development webpack --mode development",
+    "start": "webpack-dev-server --mode development"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-typescript": "^7.3.3",
+    "@degordian/standards": "^1.0.8",
+    "autoprefixer": "^9.5.1",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^2.0.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.6.0",
+    "node-sass": "^4.12.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.3",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.32.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1",
+    "webpack-merge": "^4.2.1",
+    "write-file-webpack-plugin": "^4.5.0"
+  },
+  "dependencies": {}
+}

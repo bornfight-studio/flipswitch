@@ -1,0 +1,134 @@
+@import "../../dist/flipswitch.css";
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fefefe;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.list {
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #DDDDDD;
+    color: #1C2321;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+
+    p {
+        margin: 0;
+        line-height: 1;
+        padding: 0;
+    }
+
+    &__item {
+        transition: 0.3s ease-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        &:nth-child(3) {
+            display: flex;
+        }
+    }
+
+    &.header {
+        background-color: #1C2321;
+        color: #EFF1EF;
+
+        .list__item {
+            &:nth-child(1) {
+                display: flex;
+            }
+
+            &:nth-child(3) {
+                display: none;
+            }
+        }
+    }
+
+    &.section_1 {
+        background-color: #EFF1EF;
+        color: #909DA0;
+
+        .list__item {
+            &:nth-child(2) {
+                display: flex;
+            }
+
+            &:nth-child(3) {
+                display: none;
+            }
+
+        }
+    }
+
+    &.section_3 {
+        background-color: #6F7F88;
+        color: #EFF1EF;
+
+        .list__item {
+            &:nth-child(4) {
+                display: flex;
+            }
+
+            &:nth-child(3) {
+                display: none;
+            }
+
+        }
+    }
+
+    &.footer {
+        background-color: #909DA0;
+        color: #1C2321;
+
+        .list__item {
+            &:nth-child(5) {
+                display: flex;
+            }
+
+            &:nth-child(3) {
+                display: none;
+            }
+
+        }
+    }
+}
+
+.section {
+    height: 100vh;
+    display: block;
+
+    &--1 {
+        background-color: #6F7F88;
+    }
+
+    &--2 {
+        background-color: #909DA0;
+    }
+
+    &--3 {
+        background-color: #B2BFC2;
+    }
+
+    &--4 {
+        background-color: #EFF1EF;
+    }
+
+    &--5 {
+        background-color: #1C2321;
+    }
+}

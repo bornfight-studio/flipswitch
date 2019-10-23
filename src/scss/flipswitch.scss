@@ -1,0 +1,23 @@
+.c-flipswitch {
+
+
+    &__main-wrapper {
+
+    }
+
+    &__element-top-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        will-change: transform;
+
+        &--default {
+            z-index: -1;
+        }
+    }
+
+    &__element-wrapper {
+        will-change: transform;
+    }
+}

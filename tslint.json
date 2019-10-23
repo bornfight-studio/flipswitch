@@ -1,0 +1,3 @@
+{
+  "extends": "./node_modules/@degordian/standards/tslint.js"
+}

@@ -25,23 +25,23 @@ npm i flipswitch
 
 - include flipswitch to your __JS__ and __SCSS__ after running __npm install__
 
-######JS
+###### JS
 ``` JS
 import Flipswitch from 'flipswitch';
 ```
 
-######SCSS
+###### SCSS
 ``` SCSS
 @import "~flipswitch/src/scss/flipswitch.scss";
 ```
-######or CSS  
+###### or CSS  
 ``` HTML
 <link rel="stylesheet" href="flipswitch.css">
 ```
 
 ## 💎 Customization
 
-#####Basic usage
+##### Basic usage
 - element needs to have ```js-flipswitch-element``` class
 - sections needs to have ```js-flipswitch-section``` class and ```data-flipswitch-class```
 - ```data-flipswitch-class``` is a flag that will define witch element will be clipped
@@ -52,7 +52,7 @@ import Flipswitch from 'flipswitch';
 new Flipswitch();
 ```
 
-#####Advanced usage
+##### Advanced usage
 - library will use scroll event
 - element will be wrapped and position to ```js-parent```
 - element is offsetted from left 50px and from top -50px

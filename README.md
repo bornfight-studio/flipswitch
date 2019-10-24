@@ -2,9 +2,10 @@
   <img align="center" width="140" height="140" src="./logo.svg" />
   <h2>Flipswitch.js</h2>
   <blockquote>Pure ES6 library for clipping fixed positioned elements on scroll</blockquote>
+  
+  [![Node version](https://img.shields.io/node/v/[NPM-MODULE-NAME].svg?style=flat)](http://nodejs.org/download/) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/bornfight/flipswitch/issues)
+  
 </div>
-
-[![Node version](https://img.shields.io/node/v/[NPM-MODULE-NAME].svg?style=flat)](http://nodejs.org/download/) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/bornfight/flipswitch/issues)
 
 ## 🔨️ Why ![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)
 

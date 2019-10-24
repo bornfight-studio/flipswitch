@@ -1,78 +1,90 @@
- TODO: readme
- <!--
- <div align="center">
- <img align="center" width="180" src="https://franciscohodge.com/project-pages/js-library-boilerplate/images/JSLB2.png" />
-  <h2>Javascript Library Boilerplate</h2>
-  <blockquote>Library Starter Kit for your Javascript projects</blockquote>
-  <a href="https://github.com/hodgef/js-library-boilerplate/actions"><img alt="Build Status" src="https://github.com/hodgef/js-library-boilerplate/workflows/Build/badge.svg?color=green" /></a> <a href="https://github.com/hodgef/js-library-boilerplate/actions"> <img alt="Publish Status" src="https://github.com/hodgef/js-library-boilerplate/workflows/Publish/badge.svg?color=green" /></a> <img src="https://img.shields.io/david/hodgef/js-library-boilerplate.svg" /> <a href="https://david-dm.org/hodgef/js-library-boilerplate?type=dev"><img src="https://img.shields.io/david/dev/hodgef/js-library-boilerplate.svg" /></a> <img src="https://api.dependabot.com/badges/status?host=github&repo=hodgef/js-library-boilerplate" />
-
-<strong>This is a more robust library boilerplate. For a minimal alternative, check out [js-library-boilerplate-basic](https://github.com/hodgef/js-library-boilerplate-basic).</strong>
+<div align="center">
+  <img align="center" width="140" height="140" src="./logo.svg" />
+  <h2>Flipswitch.js</h2>
+  <blockquote>Pure ES6 library for clipping fixed positioned elements on scroll</blockquote>
 </div>
 
+[![Node version](https://img.shields.io/node/v/[NPM-MODULE-NAME].svg?style=flat)](http://nodejs.org/download/) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/bornfight/flipswitch/issues)
 
-## ⭐️ Features
+## 🔨️ Why ![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)
 
-- Webpack 4
-- Babel 7
-- Hot Reloading (`npm start`)
-- CSS Autoprefixer
-- SASS/SCSS support
-- UMD exports, so your library works everywhere.
-- Based on [CRA v3.1.1](https://github.com/facebook/create-react-app/releases/tag/v3.1.1) (For Vanilla JS libs or React libs)
-- Jest unit testing
-- `npm run demo` To build a ready-for-deployment demo [(Example)](https://github.com/hodgef/js-library-boilerplate/tree/master/demo)
-- Customizable file headers for your build [(Example 1)](https://github.com/hodgef/js-library-boilerplate/blob/master/build/index.js) [(Example2)](https://github.com/hodgef/js-library-boilerplate/blob/master/build/index.css)
-- Configurable `postinstall` message [(Example)](https://github.com/hodgef/js-library-boilerplate/blob/master/bin/postinstall)
-- Daily [dependabot](https://dependabot.com) dependency updates
+- allows to clip fixed elements trough sections on scroll
+- it's simple to use
+- lightweight (minified ~8kb)
+- fast and customizable
+- no __dependencies__
 
 ## 📦 Getting Started
 
+- install flipswitch trough __npm__ or pull ti from git
+
 ```
-git clone https://github.com/hodgef/js-library-boilerplate.git myLibrary
-npm install
+npm i flipswitch
+```
+
+- include flipswitch to your __JS__ and __SCSS__ after running __npm install__
+
+######JS
+``` JS
+import Flipswitch from 'flipswitch';
+```
+
+######SCSS
+``` SCSS
+@import "~flipswitch/src/scss/flipswitch.scss";
+```
+######or CSS  
+``` HTML
+<link rel="stylesheet" href="flipswitch.css">
 ```
 
 ## 💎 Customization
 
-> Before shipping, make sure to:
-1. Edit `LICENSE` file
-2. Edit `package.json` information (These will be used to generate the headers for your built files)
-3. Edit `library: "MyLibrary"` with your library's export name in `./config/webpack.config.js`
-4. Edit `./bin/postinstall` (If you would like to display a message on package install)
+#####Basic usage
+- element needs to have ```js-flipswitch-element``` class
+- sections needs to have ```js-flipswitch-section``` class and ```data-flipswitch-class```
+- ```data-flipswitch-class``` is a flag that will define witch element will be clipped
+- library will use ```requestAnimationFrame()``` (not scroll event)
+- element will be wrapped and position to body
 
-## 🚀 Deployment
-1. `npm publish`
-2. Your users can include your library as usual
-
-### npm
-```
-import MyLibrary from 'my-library';
-import 'my-library/build/index.css' // If you import a css file in your library
-
-let libraryInstance = new MyLibrary();
-...
+```JS
+new Flipswitch();
 ```
 
-### self-host/cdn
+#####Advanced usage
+- library will use scroll event
+- element will be wrapped and position to ```js-parent```
+- element is offsetted from left 50px and from top -50px
+
+```JS
+new Flipswitch({
+    parentClass: 'js-parent',
+	elementClass: 'js-element',
+	sectionsClass: 'js-section',
+	useScroll: true,
+	offsetX: 50,
+	offsetY: -50
+});
 ```
-<link href="build/index.css" rel="stylesheet">
-<script src="build/index.js"></script>
 
-let MyLibrary = window.MyLibrary.default;
-let libraryInstance = new MyLibrary();
-...
-```
+## ✅ Properties
 
-## ✅ Libraries built with this boilerplate
+Option | Type | Default | Example | Description
+------ | ---- | ------- | ------- | -----------
+parentClass | string | body | 'js-parent' | Element will be wrapped and moved to that parent and not to body 
+elementClass | string | 'js-flipswitch-element' | 'js-element' | Changes default class
+sectionsClass | string | 'js-flipswitch-section' | 'js-section' | Changes default class 
+useScroll | boolean | false | true | Use scroll event and not ```requestAnimationFrame()```
+offsetX | number | 0 | 50 | Enables elements connecting 
+offsetY | number | 0 | -50 | Enables elements connecting 
+throttle | number | 0 | 10 | Enables elements connecting (only available if ```useScroll: false```)
 
-> Made a library using this starter kit? Share it here by [submitting a pull request](https://github.com/hodgef/js-library-boilerplate/pulls)!
+## 🚀 Useful to know
 
-- [hovercard](https://github.com/AnandChowdhary/hovercard) - Wikipedia summary cards for the web
-- [perfect-immutable](https://github.com/Lukasz-pluszczewski/perfect-immutable) - Library to provide immutable methods
-- [react-simple-keyboard](https://github.com/hodgef/react-simple-keyboard) - React Virtual Keyboard
-- [redux-better-promise](https://github.com/Lukasz-pluszczewski/redux-better-promise) - Simple and powerful redux middleware
-- [redux-breeze](https://github.com/Lukasz-pluszczewski/reduxBreeze) - Powerful redux wrapper
-- [regex-colorizer](https://github.com/geongeorge/regex-colorizer) - Highlighter for Javascript regex syntax
-- [simple-keyboard](https://github.com/hodgef/simple-keyboard) - Javascript Virtual Keyboard
-- [simple-keyboard-layouts](https://github.com/hodgef/simple-keyboard-layouts) - Layout kit for simple-keyboard
--->
+- every section needs to have ```data-flipswitch-class``` and section class (default is ```js-flipswitch-section```)
+- ```data-flipswitch-class``` is added to element wrapper as modifier class
+- element needs to be ```position: fixed ```
+- every second section doesn't need to have ```data-flipswitch-class``` - default class (and element clone) is available
+- every element need to have __it's own__ Flipswitch instance (and different classes - sections and element classes)
+- __throttle__ is only available if useScroll is __false__
+

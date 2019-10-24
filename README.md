@@ -55,7 +55,7 @@ new Flipswitch();
 ##### Advanced usage
 - library will use scroll event
 - element will be wrapped and position to ```js-parent```
-- element is offsetted from left 50px and from top -50px
+- element is offsetted 50px from left and -50px from top
 
 ```JS
 new Flipswitch({

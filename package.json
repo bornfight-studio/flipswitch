@@ -20,7 +20,7 @@
     "url": "https://github.com/bornfight/flipswitch.git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=development webpack --mode development",
+    "build": "cross-env NODE_ENV=development webpack --mode production",
     "start": "webpack-dev-server --mode development"
   },
   "devDependencies": {

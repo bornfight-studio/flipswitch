@@ -3,9 +3,9 @@ import {Options} from "../interfaces/OptionsInterface";
 export class ScrollController {
     private readonly elements: NodeListOf<HTMLElement>;
     private readonly sections: NodeListOf<HTMLElement> | undefined = undefined;
-    private readonly mainWrapper: HTMLElement = document.querySelector('.js-flipswitch-main-wrapper') as HTMLElement;
-    private readonly elementWrappers: NodeListOf<HTMLElement> = document.querySelectorAll('.js-flipswitch-element-wrapper');
-    private readonly elementTopWrappers: NodeListOf<HTMLElement> = document.querySelectorAll('.js-flipswitch-element-top-wrapper');
+    private readonly mainWrapper: HTMLElement = document.querySelector(".js-flipswitch-main-wrapper") as HTMLElement;
+    private readonly elementWrappers: NodeListOf<HTMLElement> = document.querySelectorAll(".js-flipswitch-element-wrapper");
+    private readonly elementTopWrappers: NodeListOf<HTMLElement> = document.querySelectorAll(".js-flipswitch-element-top-wrapper");
     private defaultSection: boolean = false;
     private readonly transformOnX: number = 0;
     private readonly defaults: Options;
@@ -37,7 +37,7 @@ export class ScrollController {
         this.checkScrollPosition(fixedPosition, fixedHeight, fixedFullOffset);
 
         if (this.defaults.useScroll) {
-            window.addEventListener('scroll', () => {
+            window.addEventListener("scroll", () => {
                 this.checkScrollPosition(fixedPosition, fixedHeight, fixedFullOffset);
             });
         }
@@ -56,10 +56,10 @@ export class ScrollController {
         if (!this.defaults.useScroll) {
             if (this.defaults.throttle != null && this.defaults.throttle !== 0) {
                 setTimeout(() => {
-                    requestAnimationFrame(() => this.checkScrollPosition(fixedPosition, fixedHeight, fixedFullOffset))
+                    requestAnimationFrame(() => this.checkScrollPosition(fixedPosition, fixedHeight, fixedFullOffset));
                 }, this.defaults.throttle);
             } else {
-                requestAnimationFrame(() => this.checkScrollPosition(fixedPosition, fixedHeight, fixedFullOffset))
+                requestAnimationFrame(() => this.checkScrollPosition(fixedPosition, fixedHeight, fixedFullOffset));
             }
         }
     }
@@ -73,7 +73,7 @@ export class ScrollController {
         const percentage: number = this.getPercentage(this.sections[i].offsetHeight + toCrossPosition - fixedPosition, fixedHeight);
 
         if (fixedFullOffset > toCrossPosition && fixedFullOffset < toCrossPosition + fixedHeight) {
-            let percentage: number = this.getPercentage(toCrossPosition - fixedPosition, fixedHeight);
+            const percentage: number = this.getPercentage(toCrossPosition - fixedPosition, fixedHeight);
 
             if (i > 0 && !this.defaultSection) {
                 if (this.sections[i].offsetTop > this.sections[i - 1].offsetTop + this.sections[i - 1].offsetHeight) {
@@ -89,7 +89,6 @@ export class ScrollController {
         } else if (
             -(toCrossPosition - fixedPosition) > (this.sections[i].offsetHeight - fixedHeight) &&
             Math.abs(toCrossPosition - fixedPosition) < this.sections[i].offsetHeight) {
-
 
             if (i > 0 && !this.defaultSection) {
                 this.positionElement(this.elementTopWrappers[i - 1], this.elementWrappers[i - 1], percentage);
@@ -155,4 +154,3 @@ export class ScrollController {
         elementWrapper.style.transform = `translateY(${offset}%)`;
     }
 }
-

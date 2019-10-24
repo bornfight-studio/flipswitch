@@ -43,7 +43,7 @@ import Flipswitch from 'flipswitch';
 
 ##### Basic usage
 - element needs to have ```js-flipswitch-element``` class
-- sections needs to have ```js-flipswitch-section``` class and ```data-flipswitch-class```
+- sections needs to have ```js-flipswitch-section``` class and ```data-flipswitch-class``` attribute 
 - ```data-flipswitch-class``` is a flag that will define witch element will be clipped
 - library will use ```requestAnimationFrame()``` (not scroll event)
 - element will be wrapped and position to body
@@ -79,6 +79,7 @@ useScroll | boolean | false | true | Use scroll event and not ```requestAnimatio
 offsetX | number | 0 | 50 | Enables elements connecting 
 offsetY | number | 0 | -50 | Enables elements connecting 
 throttle | number | 0 | 10 | Enables elements connecting (only available if ```useScroll: false```)
+data-flipswitch-class | html attr |   | ```data-flipswitch-class="red-section"``` | flag that will define witch element will be clipped
 
 ## 🚀 Useful to know
 

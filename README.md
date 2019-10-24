@@ -60,11 +60,11 @@ new Flipswitch();
 ```JS
 new Flipswitch({
     parentClass: 'js-parent',
-	elementClass: 'js-element',
-	sectionsClass: 'js-section',
-	useScroll: true,
-	offsetX: 50,
-	offsetY: -50
+    elementClass: 'js-element',
+    sectionsClass: 'js-section',
+    useScroll: true,
+    offsetX: 50,
+    offsetY: -50
 });
 ```
 

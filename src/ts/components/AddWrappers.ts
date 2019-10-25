@@ -1,8 +1,8 @@
 import {Options} from "../interfaces/OptionsInterface";
 
 export class AddWrappers {
-    private readonly element: HTMLElement | undefined = undefined;
-    private readonly sections: NodeListOf<HTMLElement> | undefined = undefined;
+    private readonly element?: HTMLElement = undefined;
+    private readonly sections?: NodeListOf<HTMLElement> = undefined;
     private readonly defaults: Options;
 
     constructor(defaults: Options, element: HTMLElement | undefined, sections: NodeListOf<HTMLElement>, resolve: any) {
@@ -64,14 +64,45 @@ export class AddWrappers {
 
         const parent: HTMLElement = this.element.parentElement as HTMLElement;
 
-        this.iterateItems(mainWrapper, elementTopWrapper, elementWrapper, resolve);
+        const iterateItemsData = {
+            main_wrapper: mainWrapper,
+            element_top_wrapper: elementTopWrapper,
+            element_wrapper: elementWrapper,
+            resolve_fun: resolve,
+        };
+
+        this.iterateItems(iterateItemsData);
 
         parent.removeChild(this.element);
-        parent.appendChild(mainWrapper);
+
+        if (this.defaults.parentClass === "") {
+            parent.appendChild(mainWrapper);
+        } else {
+            const newParent: HTMLElement = document.querySelector(`.${this.defaults.parentClass}`) as HTMLElement;
+            const newParents: NodeList = document.querySelectorAll<HTMLElement>(`.${this.defaults.parentClass}`);
+
+            if (newParents.length > 1) {
+                throw new Error("There is multiple elements with parentClass");
+                return;
+            } else if (newParents.length === 0) {
+                throw new Error("There is no element with parentClass");
+                return;
+            }
+            newParent.appendChild(mainWrapper);
+        }
     }
 
-    private iterateItems(mainWrapper: HTMLElement, elementTopWrapper: HTMLElement, elementWrapper: HTMLElement, resolve: any): void {
-        if (this.sections === undefined || this.element === undefined) {
+    private iterateItems(iterateItemsData: Options): void {
+        const mainWrapper = iterateItemsData.main_wrapper;
+        const elementTopWrapper = iterateItemsData.element_top_wrapper;
+        const elementWrapper = iterateItemsData.element_wrapper;
+        const resolve = iterateItemsData.resolve_fun;
+
+        if (this.sections == null ||
+            this.element == null ||
+            elementTopWrapper == null ||
+            elementWrapper == null ||
+            mainWrapper == null) {
             return;
         }
 

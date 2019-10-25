@@ -41,6 +41,29 @@ import Flipswitch from 'flipswitch';
 
 ## 💎 Customization
 
+##### HTML markup
+
+```HTML
+<p class="js-flipswitch-element">
+    Flipswitch element
+</p>
+
+<section class="js-flipswitch-section" data-flipswitch-class="first-section">
+    ...
+</section>
+<section class="js-flipswitch-section" data-flipswitch-class="second-section">
+    ...
+</section>
+<section class="js-flipswitch-section" data-flipswitch-class="fourth-section">
+    ...
+</section>
+
+<!-- default section -->
+<section class="js-flipswitch-section">
+    ...
+</section>
+```
+
 ##### Basic usage
 - element needs to have ```js-flipswitch-element``` class
 - sections needs to have ```js-flipswitch-section``` class and ```data-flipswitch-class``` attribute 
@@ -72,7 +95,7 @@ new Flipswitch({
 
 Option | Type | Default | Example | Description
 ------ | ---- | ------- | ------- | -----------
-parentClass | string | body | 'js-parent' | Element will be wrapped and moved to that parent and not to body 
+parentClass | string | element parent | 'js-parent' | Element will be wrapped and moved to that parent and not to initial parent element 
 elementClass | string | 'js-flipswitch-element' | 'js-element' | Changes default class
 sectionsClass | string | 'js-flipswitch-section' | 'js-section' | Changes default class 
 useScroll | boolean | false | true | Use scroll event and not ```requestAnimationFrame()```

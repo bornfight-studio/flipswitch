@@ -24,11 +24,12 @@ export default class Flipswitch {
      */
 
     private readonly defaults: Options = {};
-    private readonly element: HTMLElement | undefined = undefined;
+    private readonly element?: HTMLElement = undefined;
     private readonly sections: NodeListOf<HTMLElement>;
 
     constructor(options: Options = {}) {
         const _defaults = {
+            parentClass: "",
             elementClass: "js-flipswitch-element",
             sectionsClass: "js-flipswitch-section",
             useScroll: false,

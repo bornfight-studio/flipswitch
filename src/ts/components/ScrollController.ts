@@ -2,7 +2,7 @@ import {Options} from "../interfaces/OptionsInterface";
 
 export class ScrollController {
     private readonly elements: NodeListOf<HTMLElement>;
-    private readonly sections: NodeListOf<HTMLElement> | undefined = undefined;
+    private readonly sections?: NodeListOf<HTMLElement> = undefined;
     private readonly mainWrapper: HTMLElement = document.querySelector(".js-flipswitch-main-wrapper") as HTMLElement;
     private readonly elementWrappers: NodeListOf<HTMLElement> = document.querySelectorAll(".js-flipswitch-element-wrapper");
     private readonly elementTopWrappers: NodeListOf<HTMLElement> = document.querySelectorAll(".js-flipswitch-element-top-wrapper");
@@ -16,6 +16,10 @@ export class ScrollController {
         this.defaults = defaults;
 
         // check if element have transform props
+        if (this.mainWrapper == null) {
+            throw new Error("There is no parent element or its multiple elements with parenClass");
+            return;
+        }
         const style: CSSStyleDeclaration = window.getComputedStyle(this.mainWrapper);
         if (style.transform != null) {
             const matrix: DOMMatrix = new WebKitCSSMatrix(style.transform);

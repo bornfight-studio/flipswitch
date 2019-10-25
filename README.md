@@ -46,15 +46,15 @@ import Flipswitch from 'flipswitch';
 - sections needs to have ```js-flipswitch-section``` class and ```data-flipswitch-class``` attribute 
 - ```data-flipswitch-class``` is a flag that will define witch element will be clipped
 - library will use ```requestAnimationFrame()``` (not scroll event)
-- element will be wrapped and position to body
+- element will be wrapped and positioned to body
 
 ```JS
 new Flipswitch();
 ```
 
 ##### Advanced usage
-- library will use scroll event
-- element will be wrapped and position to ```js-parent```
+- below example will use scroll event
+- element will be wrapped and positioned to ```js-parent```
 - element is offsetted 50px from left and -50px from top
 
 ```JS
@@ -76,17 +76,17 @@ parentClass | string | body | 'js-parent' | Element will be wrapped and moved to
 elementClass | string | 'js-flipswitch-element' | 'js-element' | Changes default class
 sectionsClass | string | 'js-flipswitch-section' | 'js-section' | Changes default class 
 useScroll | boolean | false | true | Use scroll event and not ```requestAnimationFrame()```
-offsetX | number | 0 | 50 | Enables elements connecting 
-offsetY | number | 0 | -50 | Enables elements connecting 
-throttle | number | 0 | 10 | Enables elements connecting (only available if ```useScroll: false```)
+offsetX | number | 0 | 50 | Offsets element from top 
+offsetY | number | 0 | -50 | Offsets element from left 
+throttle | number | 0 | 10 | Refreshes element position every XY milliseconds (only available if ```useScroll: false```)
 data-flipswitch-class | html attr |   | ```data-flipswitch-class="red-section"``` | flag that will define witch element will be clipped
 
 ## 🚀 Useful to know
 
-- every section needs to have ```data-flipswitch-class``` and section class (default is ```js-flipswitch-section```)
-- ```data-flipswitch-class``` is added to element wrapper as modifier class
-- element needs to be ```position: fixed ```
-- every second section doesn't need to have ```data-flipswitch-class``` - default class (and element clone) is available
-- every element need to have __it's own__ Flipswitch instance (and different classes - sections and element classes)
-- __throttle__ is only available if useScroll is __false__
+1. every section needs to have ```data-flipswitch-class``` (look 4.) and section class (default is ```js-flipswitch-section```)
+2. ```data-flipswitch-class``` is added to element wrapper as modifier class
+3. element needs to be ```position: fixed```
+4. every second section doesn't need to have ```data-flipswitch-class``` - default class (and element clone) is available
+5. every element needs to have __it's own__ Flipswitch instance (and different sections and element classes)
+6. __throttle__ is only available if useScroll is __false__ and value have to be in milliseconds
 

@@ -1,4 +1,5 @@
-import {Options} from "../interfaces/OptionsInterface";
+import { ErrorMessages } from "../enums/ErrorMessages";
+import { Options } from "../interfaces/OptionsInterface";
 
 export class AddWrappers {
     private readonly element?: HTMLElement = undefined;
@@ -16,7 +17,7 @@ export class AddWrappers {
     private init(resolve: any): void {
         // adding wrappers around main object
         if (this.element === undefined) {
-            return;
+            throw new Error(ErrorMessages.ELEMENT_MISSING);
         }
 
         // check if element have transform props
@@ -79,14 +80,12 @@ export class AddWrappers {
             parent.appendChild(mainWrapper);
         } else {
             const newParent: HTMLElement = document.querySelector(`.${this.defaults.parentClass}`) as HTMLElement;
-            const newParents: NodeList = document.querySelectorAll<HTMLElement>(`.${this.defaults.parentClass}`);
+            const newParents: NodeListOf<HTMLElement> = document.querySelectorAll(`.${this.defaults.parentClass}`);
 
             if (newParents.length > 1) {
-                throw new Error("There is multiple elements with parentClass");
-                return;
+                throw new Error(ErrorMessages.ONLY_ONE_PARENT_ELEMENT);
             } else if (newParents.length === 0) {
-                throw new Error("There is no element with parentClass");
-                return;
+                throw new Error(ErrorMessages.PARENT_MISSING);
             }
             newParent.appendChild(mainWrapper);
         }
@@ -103,7 +102,21 @@ export class AddWrappers {
             elementTopWrapper == null ||
             elementWrapper == null ||
             mainWrapper == null) {
-            return;
+            if (this.sections == null) {
+                throw new Error(ErrorMessages.SECTIONS_MISSING);
+            }
+            if (this.element == null) {
+                throw new Error(ErrorMessages.ELEMENT_MISSING);
+            }
+            if (elementTopWrapper == null) {
+                throw new Error(ErrorMessages.TOP_WRAPPER_MISSING);
+            }
+            if (elementWrapper == null) {
+                throw new Error(ErrorMessages.ELEMENT_WRAPPER_MISSING);
+            }
+            if (mainWrapper == null) {
+                throw new Error(ErrorMessages.MAIN_WRAPPER_MISSING);
+            }
         }
 
         for (let i: number = 0; i < this.sections.length + 1; i++) {

@@ -1,10 +1,11 @@
 import "../scss/flipswitch.scss";
-import {AddWrappers} from "./components/AddWrappers";
-import {ScrollController} from "./components/ScrollController";
-import {Options} from "./interfaces/OptionsInterface";
+import { AddWrappers } from "./components/AddWrappers";
+import { ScrollController } from "./components/ScrollController";
+import { ErrorMessages } from "./enums/ErrorMessages";
+import { Options } from "./interfaces/OptionsInterface";
 
 /*
- * Midnight Rewrite v 1.0.0
+ * Flipswitch v 1.0.0
  * Repo: https://github.com/bornfight/flipswitch
  * Author: Bornfight
  *
@@ -16,15 +17,14 @@ export default class Flipswitch {
      * @param {string} elementClass (element class)
      * @param {string} sectionsClass (sections class)
      * @param options
-     * @param {number} options.throttle
-     * (delay between calls - works only if useScroll is false / time unit milliseconds)
+     * @param {number} options.throttle (delay between calls - works only if useScroll is false / time unit milliseconds)
      * @param {number} options.offsetY (offset in px)
      * @param {number} options.offsetX (offset in px)
      * @param {boolean} options.useScroll (requestAnimationFrame or scroll event)
      */
 
     private readonly defaults: Options = {};
-    private readonly element?: HTMLElement = undefined;
+    private readonly element?: HTMLElement;
     private readonly sections: NodeListOf<HTMLElement>;
 
     constructor(options: Options = {}) {
@@ -42,17 +42,21 @@ export default class Flipswitch {
 
         this.element = document.querySelector(`.${this.defaults.elementClass}`) as HTMLElement;
 
+        if (this.element == null) {
+            throw new Error(ErrorMessages.ELEMENT_MISSING);
+        }
+
         this.sections = document.querySelectorAll(`.${this.defaults.sectionsClass}`);
 
-        if (this.element !== undefined) {
-            new Promise((resolve, reject) => {
-                new AddWrappers(this.defaults, this.element, this.sections, resolve);
-            }).then(() => {
-                new ScrollController(this.defaults, this.defaults.elementClass, this.sections);
-            });
-        } else {
-            throw new Error("Missing element or sections selector (class)!");
+        if (this.sections == null || this.sections.length <= 0) {
+            throw new Error(ErrorMessages.SECTIONS_MISSING);
         }
+
+        new Promise((resolve, reject) => {
+            new AddWrappers(this.defaults, this.element, this.sections, resolve);
+        }).then(() => {
+            new ScrollController(this.defaults, this.defaults.elementClass, this.sections);
+        });
 
     }
 

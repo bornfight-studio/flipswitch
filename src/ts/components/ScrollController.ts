@@ -1,4 +1,5 @@
-import {Options} from "../interfaces/OptionsInterface";
+import { ErrorMessages } from "../enums/ErrorMessages";
+import { Options } from "../interfaces/OptionsInterface";
 
 export class ScrollController {
     private readonly elements: NodeListOf<HTMLElement>;
@@ -17,8 +18,7 @@ export class ScrollController {
 
         // check if element have transform props
         if (this.mainWrapper == null) {
-            throw new Error("There is no parent element or its multiple elements with parenClass");
-            return;
+            throw new Error(ErrorMessages.ONLY_ONE_PARENT_ELEMENT);
         }
         const style: CSSStyleDeclaration = window.getComputedStyle(this.mainWrapper);
         if (style.transform != null) {
@@ -34,8 +34,8 @@ export class ScrollController {
         const fixedHeight = this.mainWrapper.offsetHeight;
         const fixedFullOffset = fixedPosition + fixedHeight;
 
-        if (this.sections === undefined) {
-            return;
+        if (this.sections == null || this.sections.length <= 0) {
+            throw new Error(ErrorMessages.SECTIONS_MISSING);
         }
 
         this.checkScrollPosition(fixedPosition, fixedHeight, fixedFullOffset);
@@ -49,8 +49,8 @@ export class ScrollController {
     }
 
     private checkScrollPosition(fixedPosition: number, fixedHeight: number, fixedFullOffset: number) {
-        if (this.sections === undefined) {
-            return;
+        if (this.sections == null || this.sections.length <= 0) {
+            throw new Error(ErrorMessages.SECTIONS_MISSING);
         }
 
         for (let i: number = 0; i < this.sections.length; i++) {
@@ -69,12 +69,13 @@ export class ScrollController {
     }
 
     private iterateSections(fixedHeight: number, fixedPosition: number, i: number, fixedFullOffset: number): void {
-        if (this.sections === undefined) {
-            return;
+        if (this.sections == null || this.sections.length <= 0) {
+            throw new Error(ErrorMessages.SECTIONS_MISSING);
         }
 
         const toCrossPosition = this.sections[i].getBoundingClientRect().top - this.transformOnX;
-        const percentage: number = this.getPercentage(this.sections[i].offsetHeight + toCrossPosition - fixedPosition, fixedHeight);
+        const percentage: number = this.getPercentage(this.sections[i].offsetHeight + toCrossPosition -
+            fixedPosition, fixedHeight);
 
         if (fixedFullOffset > toCrossPosition && fixedFullOffset < toCrossPosition + fixedHeight) {
             const percentage: number = this.getPercentage(toCrossPosition - fixedPosition, fixedHeight);
@@ -109,7 +110,8 @@ export class ScrollController {
             this.elementWrappers[i].style.transform = `translateY(0%)`;
         } else if (
             -(toCrossPosition - fixedPosition) > this.sections[i].offsetHeight &&
-            -(toCrossPosition - fixedPosition) < this.sections[i].offsetHeight + this.sections[i].offsetHeight - fixedHeight) {
+            -(toCrossPosition - fixedPosition) < this.sections[i].offsetHeight +
+            this.sections[i].offsetHeight - fixedHeight) {
 
             this.defaultSection = true;
             if (i > 0 && !this.defaultSection) {

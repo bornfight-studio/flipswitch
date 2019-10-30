@@ -8,7 +8,7 @@ body {
     font-size: 18px;
 }
 
-.list {
+.element {
     margin: 0;
     list-style-type: none;
     padding: 0;
@@ -16,94 +16,94 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: #DDDDDD;
-    color: #1C2321;
     width: 150px;
     height: 150px;
-    border-radius: 50%;
-
-    p {
-        margin: 0;
-        line-height: 1;
-        padding: 0;
-    }
-
-    &__item {
-        transition: 0.3s ease-out;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: none;
-        align-items: center;
-        justify-content: center;
-
-        &:nth-child(3) {
-            display: flex;
-        }
-    }
 
     &.header {
-        background-color: #1C2321;
-        color: #EFF1EF;
+        #one {
+            fill: #ffffff;
+        }
 
-        .list__item {
-            &:nth-child(1) {
-                display: flex;
-            }
+        #two {
+            fill: #ffffff;
+        }
 
-            &:nth-child(3) {
-                display: none;
-            }
+        #three {
+            fill: #ffffff;
+        }
+
+        #four {
+            fill: #ffffff;
+        }
+
+        #five {
+            fill: #ffffff;
         }
     }
 
     &.section_1 {
-        background-color: #EFF1EF;
-        color: #909DA0;
+        #one {
+            fill: #1c2321;
+        }
 
-        .list__item {
-            &:nth-child(2) {
-                display: flex;
-            }
+        #two {
+            fill: #1c2321;
+        }
 
-            &:nth-child(3) {
-                display: none;
-            }
+        #three {
+            fill: #1c2321;
+        }
 
+        #four {
+            fill: #1c2321;
+        }
+
+        #five {
+            fill: #1c2321;
         }
     }
 
     &.section_3 {
-        background-color: #6F7F88;
-        color: #EFF1EF;
+        #one {
+            fill: #6F7F88;
+        }
 
-        .list__item {
-            &:nth-child(4) {
-                display: flex;
-            }
+        #two {
+            fill: #6F7F88;
+        }
 
-            &:nth-child(3) {
-                display: none;
-            }
+        #three {
+            fill: #6F7F88;
+        }
 
+        #four {
+            fill: #6F7F88;
+        }
+
+        #five {
+            fill: #B2BFC2;
         }
     }
 
     &.footer {
-        background-color: #909DA0;
-        color: #1C2321;
+        #one {
+            fill: #B2BFC2;
+        }
 
-        .list__item {
-            &:nth-child(5) {
-                display: flex;
-            }
+        #two {
+            fill: #B2BFC2;
+        }
 
-            &:nth-child(3) {
-                display: none;
-            }
+        #three {
+            fill: #B2BFC2;
+        }
 
+        #four {
+            fill: #B2BFC2;
+        }
+
+        #five {
+            fill: #6F7F88;
         }
     }
 }

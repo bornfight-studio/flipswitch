@@ -1,9 +1,12 @@
 <div align="center">
-  <img align="center" width="140" height="140" src="./logo.svg" />
+  <img align="center" width="140" height="140" src="https://user-images.githubusercontent.com/27209422/68217890-b45a8100-ffe3-11e9-999d-7e8ab2cf685a.png" />
   <h2>Flipswitch.js</h2>
   <blockquote>Pure ES6 library for clipping fixed positioned elements on scroll</blockquote>
   
-  [![Node version](https://img.shields.io/node/v/[NPM-MODULE-NAME].svg?style=flat)](http://nodejs.org/download/) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/bornfight/flipswitch/issues)
+  [![npm version](https://badge.fury.io/js/%40bornfight%2Fflipswitch.svg)](https://badge.fury.io/js/%40bornfight%2Fflipswitch)
+  ![GitHub last commit](https://img.shields.io/github/last-commit/bornfight/flipswitch)
+  [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/bornfight/flipswitch/issues)
+ [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
   
 </div>
 

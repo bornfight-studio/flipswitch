@@ -30,7 +30,7 @@ npm i @bornfight/flipswitch
 
 ###### JS
 ``` JS
-import Flipswitch from 'flipswitch';
+import Flipswitch from "@bornfight/flipswitch";
 ```
 
 ###### SCSS
@@ -115,4 +115,5 @@ data-flipswitch-class | html attr |   | ```data-flipswitch-class="red-section"``
 4. every second section doesn't need to have ```data-flipswitch-class``` - default class (and element clone) is available
 5. every element needs to have __it's own__ Flipswitch instance (and different sections and element classes)
 6. __throttle__ is only available if useScroll is __false__ and value have to be in milliseconds
+7. first section on page needs to have class ```js-flipswitch-section``` but doesn't needs to have ```data-flipswitch-class``` attr
 

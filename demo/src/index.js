@@ -9,5 +9,4 @@ new Flipswitch({
     useScroll: false,
     offsetX: 0,
     offsetY: 0,
-    throttle: 0,
 });

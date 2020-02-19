@@ -23,7 +23,7 @@
 - install flipswitch trough __npm__ or pull ti from git
 
 ```
-npm i flipswitch
+npm i @bornfight/flipswitch
 ```
 
 - include flipswitch to your __JS__ and __SCSS__ after running __npm install__

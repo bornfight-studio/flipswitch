@@ -1,15 +1,15 @@
 import "../scss/flipswitch.scss";
-import { AddWrappers } from "./components/AddWrappers";
-import { ScrollController } from "./components/ScrollController";
-import { ErrorMessages } from "./enums/ErrorMessages";
-import { Options } from "./interfaces/OptionsInterface";
+import {AddWrappers} from "./components/AddWrappers";
+import {ScrollController} from "./components/ScrollController";
+import {ErrorMessages} from "./enums/ErrorMessages";
+import {Options} from "./interfaces/OptionsInterface";
 
 /*
- * Flipswitch v 1.0.0
+ * Flipswitch v 2.0.0
  * Repo: https://github.com/bornfight/flipswitch
  * Author: Bornfight
  *
- * Year: 2019
+ * Year: 2020
  */
 
 export default class Flipswitch {
@@ -26,6 +26,7 @@ export default class Flipswitch {
     private readonly defaults: Options = {};
     private readonly element?: HTMLElement;
     private readonly sections: NodeListOf<HTMLElement>;
+    private readonly variations: [];
 
     constructor(options: Options = {}) {
         const _defaults = {
@@ -48,14 +49,25 @@ export default class Flipswitch {
 
         this.sections = document.querySelectorAll(`.${this.defaults.sectionsClass}`);
 
+        this.variations = [];
+
+        for (let i = 0; i < this.sections.length; i++) {
+            const classVal = this.sections[i].dataset.flipswitchClass;
+            // @ts-ignore
+            if (!this.variations.includes(classVal)) {
+                // @ts-ignore
+                this.variations.push(classVal);
+            }
+        }
+
         if (this.sections == null || this.sections.length <= 0) {
             throw new Error(ErrorMessages.SECTIONS_MISSING);
         }
 
         new Promise((resolve, reject) => {
-            new AddWrappers(this.defaults, this.element, this.sections, resolve);
+            new AddWrappers(this.defaults, this.element, this.sections, this.variations, resolve);
         }).then(() => {
-            new ScrollController(this.defaults, this.defaults.elementClass, this.sections);
+            new ScrollController(this.defaults, this.defaults.elementClass, this.sections, this.variations);
         });
 
     }

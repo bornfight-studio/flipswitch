@@ -8,5 +8,5 @@ new Flipswitch({
     sectionsClass: 'js-section',
     useScroll: false,
     offsetX: 0,
-    offsetY: 0,
+    offsetY: 0
 });

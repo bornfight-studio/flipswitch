@@ -1,15 +1,17 @@
-import { ErrorMessages } from "../enums/ErrorMessages";
-import { Options } from "../interfaces/OptionsInterface";
+import {ErrorMessages} from "../enums/ErrorMessages";
+import {Options} from "../interfaces/OptionsInterface";
 
 export class AddWrappers {
     private readonly element?: HTMLElement = undefined;
     private readonly sections?: NodeListOf<HTMLElement> = undefined;
     private readonly defaults: Options;
+    private readonly variations: [];
 
-    constructor(defaults: Options, element: HTMLElement | undefined, sections: NodeListOf<HTMLElement>, resolve: any) {
+    constructor(defaults: Options, element: HTMLElement | undefined, sections: NodeListOf<HTMLElement>, variations: [], resolve: any) {
         this.element = element;
         this.sections = sections;
         this.defaults = defaults;
+        this.variations = variations;
 
         this.init(resolve);
     }
@@ -119,18 +121,18 @@ export class AddWrappers {
             }
         }
 
-        for (let i: number = 0; i < this.sections.length + 1; i++) {
+        for (let i: number = 0; i < this.variations.length + 1; i++) {
             const clonedTopWrapper = elementTopWrapper.cloneNode(true) as HTMLElement;
             const clonedWrapper = elementWrapper.cloneNode(true);
             const clonedElement: HTMLElement = this.element.cloneNode(true) as HTMLElement;
 
-            if (i === this.sections.length) {
+            if (i === this.variations.length) {
                 clonedWrapper.appendChild(clonedElement);
                 clonedTopWrapper.appendChild(clonedWrapper);
                 clonedTopWrapper.classList.add("c-flipswitch__element-top-wrapper--default");
                 mainWrapper.appendChild(clonedTopWrapper);
             } else {
-                const elementClass: string | undefined = this.sections[i].dataset.flipswitchClass || "";
+                const elementClass: string | undefined = this.variations[i] || "";
 
                 if (elementClass !== "") {
                     clonedElement.classList.add(elementClass);

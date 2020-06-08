@@ -1,5 +1,5 @@
-import { ErrorMessages } from "../enums/ErrorMessages";
-import { Options } from "../interfaces/OptionsInterface";
+import {ErrorMessages} from "../enums/ErrorMessages";
+import {Options} from "../interfaces/OptionsInterface";
 
 export class ScrollController {
     private readonly elements: NodeListOf<HTMLElement>;
@@ -10,11 +10,13 @@ export class ScrollController {
     private defaultSection: boolean = false;
     private readonly transformOnX: number = 0;
     private readonly defaults: Options;
+    private readonly variations: [];
 
-    constructor(defaults: Options, element: string | undefined, sections: NodeListOf<HTMLElement>) {
+    constructor(defaults: Options, element: string | undefined, sections: NodeListOf<HTMLElement>, variations: []) {
         this.elements = document.querySelectorAll(`.${element}`);
         this.sections = sections;
         this.defaults = defaults;
+        this.variations = variations;
 
         // check if element have transform props
         if (this.mainWrapper == null) {
@@ -76,60 +78,63 @@ export class ScrollController {
         const toCrossPosition = this.sections[i].getBoundingClientRect().top - this.transformOnX;
         const percentage: number = this.getPercentage(this.sections[i].offsetHeight + toCrossPosition -
             fixedPosition, fixedHeight);
+        const index = this.findIndex(this.sections[i]);
 
         if (fixedFullOffset > toCrossPosition && fixedFullOffset < toCrossPosition + fixedHeight) {
             const percentage: number = this.getPercentage(toCrossPosition - fixedPosition, fixedHeight);
 
-            if (i > 0 && !this.defaultSection) {
+            if (index > 0 && !this.defaultSection) {
                 if (this.sections[i].offsetTop > this.sections[i - 1].offsetTop + this.sections[i - 1].offsetHeight) {
-                    this.positionElement(this.elementTopWrappers[i - 1], this.elementWrappers[i - 1], 100);
+                    this.positionElement(this.elementTopWrappers[index - 1], this.elementWrappers[index - 1], 100);
                 } else {
-                    this.positionElement(this.elementTopWrappers[i - 1], this.elementWrappers[i - 1], percentage);
+                    this.positionElement(this.elementTopWrappers[index - 1], this.elementWrappers[index - 1], percentage);
                 }
             }
 
-            this.elementTopWrappers[i].style.transform = `translateY(${100 - percentage}%)`;
-            this.elementWrappers[i].style.transform = `translateY(-${100 - percentage}%)`;
-            this.setInvisibleWrappers(i);
+            this.elementTopWrappers[index].style.transform = `translateY(${100 - percentage}%)`;
+            this.elementWrappers[index].style.transform = `translateY(-${100 - percentage}%)`;
+            this.setInvisibleWrappers(index);
         } else if (
-            -(toCrossPosition - fixedPosition) > (this.sections[i].offsetHeight - fixedHeight) &&
-            Math.abs(toCrossPosition - fixedPosition) < this.sections[i].offsetHeight) {
+            -(toCrossPosition - fixedPosition) > (this.sections[index].offsetHeight - fixedHeight) &&
+            Math.abs(toCrossPosition - fixedPosition) < this.sections[index].offsetHeight) {
 
-            if (i > 0 && !this.defaultSection) {
-                this.positionElement(this.elementTopWrappers[i - 1], this.elementWrappers[i - 1], percentage);
+            if (index > 0 && !this.defaultSection) {
+                this.positionElement(this.elementTopWrappers[index - 1], this.elementWrappers[index - 1], percentage);
             }
-
-            this.positionElement(this.elementTopWrappers[i], this.elementWrappers[i], percentage);
-            this.setInvisibleWrappers(i);
+            this.positionElement(this.elementTopWrappers[index], this.elementWrappers[index], percentage);
+            this.setInvisibleWrappers(index);
         } else if (
             (toCrossPosition - fixedPosition) < 0 &&
             Math.abs(toCrossPosition - fixedPosition) < this.sections[i].offsetHeight - fixedHeight) {
 
-            this.setInvisibleWrappers(i);
-            this.elementTopWrappers[i].style.transform = `translateY(0%)`;
-            this.elementWrappers[i].style.transform = `translateY(0%)`;
+            this.setInvisibleWrappers(index);
+            this.elementTopWrappers[index].style.transform = `translateY(0%)`;
+            this.elementWrappers[index].style.transform = `translateY(0%)`;
         } else if (
             -(toCrossPosition - fixedPosition) > this.sections[i].offsetHeight &&
             -(toCrossPosition - fixedPosition) < this.sections[i].offsetHeight +
             this.sections[i].offsetHeight - fixedHeight) {
 
             this.defaultSection = true;
-            if (i > 0 && !this.defaultSection) {
-                this.positionElement(this.elementTopWrappers[i - 1], this.elementWrappers[i - 1], percentage);
-            }
-            this.positionElement(this.elementTopWrappers[i], this.elementWrappers[i], percentage);
 
-            for (let j: number = 0; j < this.sections.length; j++) {
+            if (i > 0 && !this.defaultSection) {
+                this.positionElement(this.elementTopWrappers[index - 1], this.elementWrappers[index - 1], percentage);
+            }
+
+            this.positionElement(this.elementTopWrappers[index], this.elementWrappers[index], percentage);
+
+            for (let j: number = 0; j < this.variations.length; j++) {
                 this.elementTopWrappers[j].style.transform = `translateY(-100%)`;
                 this.elementWrappers[j].style.transform = `translateY(-100%)`;
             }
-            this.setInvisibleWrappers(i);
+
+            this.setInvisibleWrappers(index);
         }
     }
 
     private setInvisibleWrappers(i: number) {
         if (i > 0 && this.sections !== undefined) {
-            for (let j: number = 0; j < this.sections.length; j++) {
+            for (let j: number = 0; j < this.variations.length; j++) {
                 if (j < i && j < i - 1) {
                     this.elementWrappers[j].style.transform = `translateY(-100%)`;
                     this.elementTopWrappers[j].style.transform = `translateY(100%)`;
@@ -139,13 +144,17 @@ export class ScrollController {
                 }
             }
         } else if (this.sections !== undefined) {
-            for (let j: number = 0; j < this.sections.length; j++) {
+            for (let j: number = 0; j < this.variations.length; j++) {
                 if (j > i) {
                     this.elementWrappers[j].style.transform = `translateY(100%)`;
                     this.elementTopWrappers[j].style.transform = `translateY(-100%)`;
                 }
             }
         }
+    }
+
+    private findIndex(section: HTMLElement) {
+        return this.variations.findIndex((index) => index === section.dataset.flipswitchClass);
     }
 
     private getPercentage(num: number, totalDuration: number): number {

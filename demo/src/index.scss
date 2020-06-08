@@ -106,6 +106,50 @@ body {
             fill: #6F7F88;
         }
     }
+
+    &.dark {
+        #one {
+            fill: #fff;
+        }
+
+        #two {
+            fill: #fff;
+        }
+
+        #three {
+            fill: #fff;
+        }
+
+        #four {
+            fill: #fff;
+        }
+
+        #five {
+            fill: #fff;
+        }
+    }
+
+    &.light {
+        #one {
+            fill: #000;
+        }
+
+        #two {
+            fill: #000;
+        }
+
+        #three {
+            fill: #000;
+        }
+
+        #four {
+            fill: #000;
+        }
+
+        #five {
+            fill: #000;
+        }
+    }
 }
 
 .section {

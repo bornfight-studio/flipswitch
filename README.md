@@ -45,6 +45,7 @@ import Flipswitch from "@bornfight/flipswitch";
 ## 💎 Customization
 
 ##### HTML markup
+- `data-flipswitch-class` doesn't need to be different for every section (could be something like dark and light) 
 
 ```HTML
 <p class="js-flipswitch-element">
@@ -69,7 +70,7 @@ import Flipswitch from "@bornfight/flipswitch";
 
 ##### Basic usage
 - element needs to have ```js-flipswitch-element``` class
-- sections needs to have ```js-flipswitch-section``` class and ```data-flipswitch-class``` attribute 
+- section needs to have ```js-flipswitch-section``` class and ```data-flipswitch-class``` attribute 
 - ```data-flipswitch-class``` is a flag that will define witch element will be clipped
 - library will use ```requestAnimationFrame()``` (not scroll event)
 - element will be wrapped and positioned to body
@@ -81,7 +82,7 @@ new Flipswitch();
 ##### Advanced usage
 - below example will use scroll event
 - element will be wrapped and positioned to ```js-parent```
-- element is offsetted 50px from left and -50px from top
+- element is offset by 50px from left and -50px from top
 
 ```JS
 new Flipswitch({

@@ -1,27 +1,7 @@
 {
   "name": "@bornfight/flipswitch",
-  "version": "2.0.0",
-  "author": "Bornfight <hello@bornfight.com> (https://www.bornfight.com/)",
+  "version": "2.0.1",
   "description": "flipswitch.js - pure javascript solution for clipping elements inside DOM",
-  "main": "dist/flipswitch.js",
-  "license": "MIT",
-  "contributors": [
-    {
-      "name": "Tomislav Jezidzic",
-      "email": "tomislavjezidzic@bornfight.com",
-      "url": "https://github.com/tomislavjezidzic"
-    },
-    {
-      "name": "Mario Loncarek",
-      "email": "marioloncarek@bornfight.com",
-      "url": "http://mloncarek.com/"
-    },
-    {
-      "name": "Davor Tvoric",
-      "email": "davortvoric@bornfight.com",
-      "url": "https://github.com/ShockwaVee"
-    }
-  ],
   "keywords": [
     "clip",
     "clip element",
@@ -30,17 +10,42 @@
     "creative"
   ],
   "bugs": {
-    "url": "https://github.com/bornfight/flipswitch/issues",
-    "email": "hello@bornfight.com"
+    "url": "https://github.com/bornfight-studio/flipswitch/issues",
+    "email": "hello@bornfight.studio"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bornfight/flipswitch.git"
+    "url": "https://github.com/bornfight-studio/flipswitch.git"
   },
+  "license": "MIT",
+  "author": {
+    "name": "BORNFIGHT STUDIO®",
+    "email": "hello@bornfight.studio",
+    "url": "https://www.bornfight.studio"
+  },
+  "contributors": [
+    {
+      "name": "Tomislav Jezidzic",
+      "email": "tomislavjezidzic@bornfight.studio",
+      "url": "https://github.com/tomislavjezidzic"
+    },
+    {
+      "name": "Mario Loncarek",
+      "email": "marioloncarek@bornfight.studio",
+      "url": "http://mloncarek.com/"
+    },
+    {
+      "name": "Davor Tvoric",
+      "email": "davortvoric@bornfight.studio",
+      "url": "https://github.com/ShockwaVee"
+    }
+  ],
+  "main": "dist/flipswitch.js",
   "scripts": {
     "build": "cross-env NODE_ENV=development webpack --mode production",
     "start": "webpack-dev-server --mode development"
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
@@ -69,5 +74,8 @@
     "webpack-merge": "^4.2.1",
     "write-file-webpack-plugin": "^4.5.0"
   },
-  "dependencies": {}
+  "engines": {
+    "node": "20.x",
+    "npm": "10.x"
+  }
 }

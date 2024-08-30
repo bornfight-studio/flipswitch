@@ -5,9 +5,9 @@ import {ErrorMessages} from "./enums/ErrorMessages";
 import {Options} from "./interfaces/OptionsInterface";
 
 /*
- * Flipswitch v 2.0.0
- * Repo: https://github.com/bornfight/flipswitch
- * Author: Bornfight
+ * Flipswitch v 2.0.1
+ * Repo: https://github.com/bornfight-studio/flipswitch
+ * Author: Bornfight Studio
  *
  * Year: 2020
  */
